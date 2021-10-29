@@ -30,4 +30,15 @@ public class Board {
     public int getValueAtPosition(int row, int col) {
         return board[row][col];
     }
+
+    public String toString(){
+        String boardResult="";
+        for (int row = 0; row < getRows(); row++) {
+            for (int col = 0; col < getColumns() ; col++) {
+                boardResult+=board[row][col];
+            }
+            boardResult+= "\n";
+        }
+        return boardResult;
+    }
 }

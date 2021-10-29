@@ -1,7 +1,5 @@
 package se.cleancode.lab1;
 
-import org.assertj.core.error.AssertionErrorMessagesAggregator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BoardTest {
 
        Board board;
-      Board board1;
 
     @Test
     void getRowsFromCreatedBoardShouldReturnRowLength(){
@@ -34,6 +31,14 @@ public class BoardTest {
        board= new Board(4, 3);
        board.setValue(1, 2, 5);
        assertEquals(5,board.getValueAtPosition(1,2));
+
+   }
+
+   @Test
+    void testToStringMethod(){
+      board=new Board(2,2);
+
+
 
    }
 
