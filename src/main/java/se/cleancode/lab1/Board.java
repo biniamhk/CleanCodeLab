@@ -18,4 +18,16 @@ public class Board {
     public int getColumns() {
         return board[0].length;
     }
+
+    public void setValue(int row, int col, int value) throws ArrayIndexOutOfBoundsException {
+        try {
+            board[row][col] = value;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("enter a valid index");
+
+        }
+    }
+    public int getValueAtPosition(int row, int col) {
+        return board[row][col];
+    }
 }
