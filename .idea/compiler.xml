@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="CleanCodeLia1" options="--add-exports java.base/sun.nio.cs=ALL-UNNAMED" />
+      <module name="CleanCodeLia1" options="" />
     </option>
   </component>
 </project>
