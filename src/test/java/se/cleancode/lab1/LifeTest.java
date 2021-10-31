@@ -39,5 +39,17 @@ public class LifeTest {
 
     }
 
+    @Test
+    void checkingEdgeCases(){
+        board= new Board(3,4);
+        life = new Life();
 
+
+        board.setValue(0,1,1);
+        board.setValue(1,0,1);
+        board.setValue(1,1,1);
+
+        assertEquals(3,life.countNeighbours(0,0,board));
+
+    }
 }
