@@ -1,5 +1,7 @@
 package se.cleancode.lab1;
 
+import java.util.Arrays;
+
 public class Life {
     public int initializeBoard(Board board) {
         int numberOfLivingCells = 0;
@@ -41,14 +43,22 @@ public class Life {
                 int numberOfLivingNeighbours = countNeighbours(row, col, board);
                 if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours < 2) {
                     newGenerationBoard.setValue(row, col, 0);
-                }
-                else if(board.getValueAtPosition(row,col)==1 && numberOfLivingNeighbours >3){
+                } else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours > 3) {
                     newGenerationBoard.setValue(row, col, 0);
-                }
-                else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours <= 3 ) {
+                } else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours <= 3) {
                     newGenerationBoard.setValue(row, col, 1);
                 }
             }
+        }
+    }
+
+    public void transferNewToCurrent(Board board, Board newBoard) {
+        for (int r = 0; r < board.getRows(); r++) {
+            for (int c = 0; c < board.getColumns(); c++) {
+                board.setValue(r, c, newBoard.getValueAtPosition(r, c));
+            }
+
+
         }
     }
 }

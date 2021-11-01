@@ -11,6 +11,9 @@ public class Board {
         this.board = new int[rows][cols];
     }
 
+    public int[][] getBoard() {
+        return board;
+    }
 
     public int getRows() {
         return board.length;
@@ -34,7 +37,7 @@ public class Board {
     }
 
     public String toString() {
-        StringBuilder boardResult = new StringBuilder("git ");
+        StringBuilder boardResult = new StringBuilder();
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getColumns(); col++) {
                 boardResult.append(board[row][col]);

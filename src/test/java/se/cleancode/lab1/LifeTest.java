@@ -1,10 +1,12 @@
 package se.cleancode.lab1;
 
+import org.assertj.core.api.Object2DArrayAssert;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LifeTest {
 
@@ -82,6 +84,7 @@ public class LifeTest {
         assertEquals(0, newGenerationBoard.getValueAtPosition(1, 1));
 
     }
+
     @Test
     void calculateNextGenerationForLivingCellWithThreeLivingNeighbours() {
 
@@ -93,15 +96,28 @@ public class LifeTest {
         board.setValue(0, 1, 1);
         board.setValue(1, 0, 1);
 
-        board.setValue(3,4,1);
-        board.setValue(2,4,1);
-        board.setValue(3,3,1);
+        board.setValue(3, 4, 1);
+        board.setValue(2, 4, 1);
+        board.setValue(3, 3, 1);
 
         life.calculateNextGeneration(board, newGenerationBoard);
         assertEquals(1, newGenerationBoard.getValueAtPosition(1, 1));
 
         assertEquals(1, newGenerationBoard.getValueAtPosition(3, 4));
 
+    }
+
+    @Test
+    void checkIfValuesTransferredBetweenBoards() {
+        board = new Board(5, 6);
+        newGenerationBoard = new Board(5, 6);
+        life = new Life();
+        life.initializeBoard(board);
+        life.calculateNextGeneration(board, newGenerationBoard);
+        life.transferNewToCurrent(board, newGenerationBoard);
+
+
+        assertTrue(Arrays.deepEquals(board.getBoard(), newGenerationBoard.getBoard()));
 
 
     }
