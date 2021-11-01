@@ -51,8 +51,12 @@ public class Life {
                 else if (board.getValueAtPosition(row, col) == 0 && numberOfLivingNeighbours == 3 ) {
                     newGenerationBoard.setValue(row, col, 1);
                 }
+                else {
+                    newGenerationBoard.setValue(row, col, 0);
+                }
+
+                }
 
             }
         }
     }
-}

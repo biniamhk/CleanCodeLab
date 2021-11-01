@@ -122,4 +122,34 @@ public class LifeTest {
 
     }
 
+    @Test
+    void calculateNextGenerationForDeadCellWithNoThreeLivingNeighbours() {
+
+        board = new Board(5, 6);
+        newGenerationBoard = new Board(5, 6);
+        life = new Life();
+        board.setValue(1, 1, 0);
+        board.setValue(0, 0, 1);
+        board.setValue(0, 1, 1);
+
+
+        board.setValue(3,4,0);
+        board.setValue(2,4,1);
+        board.setValue(3,3,1);
+        board.setValue(3,5,1);
+        board.setValue(4,4,1);
+
+        board.setValue(0,4,0);
+
+        life.calculateNextGeneration(board, newGenerationBoard);
+        assertEquals(0, newGenerationBoard.getValueAtPosition(1, 1));
+
+        assertEquals(0, newGenerationBoard.getValueAtPosition(3, 4));
+        assertEquals(0, newGenerationBoard.getValueAtPosition(0, 4));
+
+
+    }
+
+
+
 }
