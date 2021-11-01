@@ -82,5 +82,28 @@ public class LifeTest {
         assertEquals(0, newGenerationBoard.getValueAtPosition(1, 1));
 
     }
+    @Test
+    void calculateNextGenerationForLivingCellWithThreeLivingNeighbours() {
+
+        board = new Board(5, 6);
+        newGenerationBoard = new Board(5, 6);
+        life = new Life();
+        board.setValue(1, 1, 1);
+        board.setValue(0, 0, 1);
+        board.setValue(0, 1, 1);
+        board.setValue(1, 0, 1);
+
+        board.setValue(3,4,1);
+        board.setValue(2,4,1);
+        board.setValue(3,3,1);
+
+        life.calculateNextGeneration(board, newGenerationBoard);
+        assertEquals(1, newGenerationBoard.getValueAtPosition(1, 1));
+
+        assertEquals(1, newGenerationBoard.getValueAtPosition(3, 4));
+
+
+
+    }
 
 }

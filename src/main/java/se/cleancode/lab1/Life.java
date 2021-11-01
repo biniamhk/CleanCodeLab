@@ -45,6 +45,9 @@ public class Life {
                 else if(board.getValueAtPosition(row,col)==1 && numberOfLivingNeighbours >3){
                     newGenerationBoard.setValue(row, col, 0);
                 }
+                else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours <= 3 ) {
+                    newGenerationBoard.setValue(row, col, 1);
+                }
             }
         }
     }
