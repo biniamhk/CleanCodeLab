@@ -4,10 +4,11 @@ public class Board {
     private int[][] board;
     private int rows;
     private int cols;
+
     public Board(int rows, int cols) {
-        this.rows=rows;
-        this.cols=cols;
-        this.board=new int[rows][cols];
+        this.rows = rows;
+        this.cols = cols;
+        this.board = new int[rows][cols];
     }
 
 
@@ -27,18 +28,19 @@ public class Board {
 
         }
     }
+
     public int getValueAtPosition(int row, int col) {
         return board[row][col];
     }
 
-    public String toString(){
-        String boardResult="";
+    public String toString() {
+        StringBuilder boardResult = new StringBuilder("git ");
         for (int row = 0; row < getRows(); row++) {
-            for (int col = 0; col < getColumns() ; col++) {
-                boardResult+=board[row][col];
+            for (int col = 0; col < getColumns(); col++) {
+                boardResult.append(board[row][col]);
             }
-            boardResult+= "\n";
+            boardResult.append("\n");
         }
-        return boardResult;
+        return boardResult.toString();
     }
 }

@@ -27,11 +27,22 @@ public class Life {
                         r >= 0 && r < board.getRows() &&
                         !(r == row && c == col) &&
                         board.getValueAtPosition(r, c) == 1) {
-                    count=count+1;
+                    count = count + 1;
                 }
             }
         }
 
-          return count;
+        return count;
+    }
+
+    public void calculateNextGeneration(Board board, Board newGenerationBoard) {
+        for (int row = 0; row < board.getRows(); row++) {
+            for (int col = 0; col < board.getColumns(); col++) {
+                int numberOfLivingNeighbours = countNeighbours(row, col, board);
+                if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours < 2) {
+                    newGenerationBoard.setValue(row, col, 0);
+                }
+            }
+        }
     }
 }
