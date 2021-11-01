@@ -108,21 +108,6 @@ public class LifeTest {
     }
 
     @Test
-    void checkIfValuesTransferredBetweenBoards() {
-        board = new Board(5, 6);
-        newGenerationBoard = new Board(5, 6);
-        life = new Life();
-        life.initializeBoard(board);
-        life.calculateNextGeneration(board, newGenerationBoard);
-        life.transferNewToCurrent(board, newGenerationBoard);
-
-
-        assertTrue(Arrays.deepEquals(board.getBoard(), newGenerationBoard.getBoard()));
-
-
-    }
-
-    @Test
     void calculateNextGenerationForDeadCellWithThreeLivingNeighbours() {
 
         board = new Board(5, 6);
@@ -149,13 +134,13 @@ public class LifeTest {
         board.setValue(0, 1, 1);
 
 
-        board.setValue(3,4,0);
-        board.setValue(2,4,1);
-        board.setValue(3,3,1);
-        board.setValue(3,5,1);
-        board.setValue(4,4,1);
+        board.setValue(3, 4, 0);
+        board.setValue(2, 4, 1);
+        board.setValue(3, 3, 1);
+        board.setValue(3, 5, 1);
+        board.setValue(4, 4, 1);
 
-        board.setValue(0,4,0);
+        board.setValue(0, 4, 0);
 
         life.calculateNextGeneration(board, newGenerationBoard);
         assertEquals(0, newGenerationBoard.getValueAtPosition(1, 1));
@@ -166,6 +151,20 @@ public class LifeTest {
 
     }
 
+    @Test
+    void checkIfValuesTransferredBetweenBoards() {
+        board = new Board(5, 6);
+        newGenerationBoard = new Board(5, 6);
+        life = new Life();
+        life.initializeBoard(board);
+        life.calculateNextGeneration(board, newGenerationBoard);
+        life.transferNewToCurrent(board, newGenerationBoard);
+
+
+        assertTrue(Arrays.deepEquals(board.getBoard(), newGenerationBoard.getBoard()));
+
+
+    }
 
 
 }
