@@ -57,8 +57,25 @@ public class Life {
             for (int c = 0; c < board.getColumns(); c++) {
                 board.setValue(r, c, newBoard.getValueAtPosition(r, c));
             }
-
-
         }
+    }
+
+    public String[][] displayBoard(Board board) {
+        String [][] console = new String[board.getRows()][board.getColumns()];
+
+        for (int row = 0; row < board.getRows(); row++) {
+            for (int col = 0; col < board.getColumns(); col++) {
+                if (board.getValueAtPosition(row, col) == 0) {
+                    System.out.print("."+" ");
+                    console[row][col]="."+" ";
+                } else {
+                    System.out.print("*"+" ");
+                   console[row][col]="*"+" ";
+                }
+
+            }
+            System.out.println();
+        }
+        return  console;
     }
 }
