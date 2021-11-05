@@ -29,10 +29,18 @@ public class BoardTest {
     }
 
     @Test
-    void checkIfAssignedValueToTheBoardWorks() {
+    void checkIfSetAliveWorks() {
         board = new Board(4, 3);
-        board.setValue(1, 2, 5);
-        assertEquals(5, board.getValueAtPosition(1, 2));
+        board.setAlive(1, 2);
+        assertEquals(1, board.getValueAtPosition(1, 2));
+
+    }
+
+    @Test
+    void checkIfSetDeadWorks() {
+        board = new Board(4, 3);
+        board.setDead(1, 2);
+        assertEquals(0, board.getValueAtPosition(1, 2));
 
     }
 

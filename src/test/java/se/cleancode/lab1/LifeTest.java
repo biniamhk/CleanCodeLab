@@ -41,11 +41,11 @@ public class LifeTest {
         board = new Board(3, 4);
         life = new Life();
 
-        board.setValue(1, 1, 1);
-        board.setValue(0, 0, 1);
-        board.setValue(0, 1, 1);
-        board.setValue(2, 2, 1);
-        board.setValue(1, 2, 1);
+        board.setAlive(1, 1);
+        board.setAlive(0, 0);
+        board.setAlive(0, 1);
+        board.setAlive(2, 2);
+        board.setAlive(1, 2);
 
         assertEquals(4, life.countNeighbours(1, 1, board));
 
@@ -57,9 +57,9 @@ public class LifeTest {
         life = new Life();
 
 
-        board.setValue(0, 1, 1);
-        board.setValue(1, 0, 1);
-        board.setValue(1, 1, 1);
+        board.setAlive(0, 1);
+        board.setAlive(1, 0);
+        board.setAlive(1, 1);
 
         assertEquals(3, life.countNeighbours(0, 0, board));
 
@@ -71,8 +71,8 @@ public class LifeTest {
         board = new Board(3, 4);
         newGenerationBoard = new Board(3, 4);
         life = new Life();
-        board.setValue(0, 0, 1);
-        board.setValue(0, 1, 1);
+        board.setAlive(0, 0);
+        board.setAlive(0, 1);
         life.calculateNextGeneration(board, newGenerationBoard);
         assertEquals(0, newGenerationBoard.getValueAtPosition(0, 0));
 
@@ -84,30 +84,30 @@ public class LifeTest {
         board = new Board(3, 4);
         newGenerationBoard = new Board(3, 4);
         life = new Life();
-        board.setValue(1, 1, 1);
-        board.setValue(0, 0, 1);
-        board.setValue(0, 1, 1);
-        board.setValue(1, 0, 1);
-        board.setValue(1, 2, 1);
+        board.setAlive(1, 1);
+        board.setAlive(0, 0);
+        board.setAlive(0, 1);
+        board.setAlive(1, 0);
+        board.setAlive(1, 2);
         life.calculateNextGeneration(board, newGenerationBoard);
         assertEquals(0, newGenerationBoard.getValueAtPosition(1, 1));
 
     }
 
     @Test
-    void calculateNextGenerationForLivingCellWithThreeLivingNeighbours() {
+    void calculateNextGenerationForLivingCellWithThreeOrTwoLivingNeighbours() {
 
         board = new Board(5, 6);
         newGenerationBoard = new Board(5, 6);
         life = new Life();
-        board.setValue(1, 1, 1);
-        board.setValue(0, 0, 1);
-        board.setValue(0, 1, 1);
-        board.setValue(1, 0, 1);
+        board.setAlive(1, 1);
+        board.setAlive(0, 0);
+        board.setAlive(0, 1);
+        board.setAlive(1, 0);
 
-        board.setValue(3, 4, 1);
-        board.setValue(2, 4, 1);
-        board.setValue(3, 3, 1);
+        board.setAlive(3, 4);
+        board.setAlive(2, 4);
+        board.setAlive(3, 3);
 
         life.calculateNextGeneration(board, newGenerationBoard);
         assertEquals(1, newGenerationBoard.getValueAtPosition(1, 1));
@@ -122,10 +122,10 @@ public class LifeTest {
         board = new Board(5, 6);
         newGenerationBoard = new Board(5, 6);
         life = new Life();
-        board.setValue(1, 1, 0);
-        board.setValue(0, 0, 1);
-        board.setValue(0, 1, 1);
-        board.setValue(1, 0, 1);
+        board.setDead(1, 1);
+        board.setAlive(0, 0);
+        board.setAlive(0, 1);
+        board.setAlive(1, 0);
 
         life.calculateNextGeneration(board, newGenerationBoard);
         assertEquals(1, newGenerationBoard.getValueAtPosition(1, 1));
@@ -138,18 +138,18 @@ public class LifeTest {
         board = new Board(5, 6);
         newGenerationBoard = new Board(5, 6);
         life = new Life();
-        board.setValue(1, 1, 0);
-        board.setValue(0, 0, 1);
-        board.setValue(0, 1, 1);
+        board.setDead(1, 1);
+        board.setAlive(0, 0);
+        board.setAlive(0, 1);
 
 
-        board.setValue(3, 4, 0);
-        board.setValue(2, 4, 1);
-        board.setValue(3, 3, 1);
-        board.setValue(3, 5, 1);
-        board.setValue(4, 4, 1);
+        board.setDead(3, 4);
+        board.setAlive(2, 4);
+        board.setAlive(3, 3);
+        board.setAlive(3, 5);
+        board.setAlive(4, 4);
 
-        board.setValue(0, 4, 0);
+        board.setDead(0, 4);
 
         life.calculateNextGeneration(board, newGenerationBoard);
         assertEquals(0, newGenerationBoard.getValueAtPosition(1, 1));
@@ -180,24 +180,19 @@ public class LifeTest {
         board = new Board(3, 3);
         life = new Life();
 
-        board.setValue(0, 0, 1);
-        board.setValue(0, 1, 0);
-        board.setValue(0, 2, 1);
-        board.setValue(1, 0, 0);
-        board.setValue(1, 1, 1);
-        board.setValue(1, 2, 0);
-        board.setValue(2, 0, 1);
-        board.setValue(2, 1, 0);
-        board.setValue(2, 2, 1);
-        assertEquals("*" + " " + "." + " " + "*" + " " + "\n" + "." + " " + "*" + " " + "." + " "+"\n"+"*"+" "+"."+" "+"*"+" "
+        board.setAlive(0, 0);
+        board.setAlive(0, 2);
+        board.setAlive(1, 1);
+        board.setAlive(2, 0);
+        board.setAlive(2, 2);
+        assertEquals("*" + " " + "." + " " + "*" + " " + "\n" + "." + " " + "*" + " " + "." + " " + "\n" + "*" + " " + "." + " " + "*" + " "
                 , Arrays.deepToString(life.displayBoard(board)).replace("], [", "\n").replace("[", "")
                         .replace("]", "").replace(", ", ""));
         System.out.println();
-        assertEquals(Arrays.deepToString(board.getBoard()).replace("1", "*"+" ").replace("0", "."+" ")
+        assertEquals(Arrays.deepToString(board.getBoard()).replace("1", "*" + " ").replace("0", "." + " ")
                 , Arrays.deepToString(life.displayBoard(board)));
 
     }
-
 
 
 }

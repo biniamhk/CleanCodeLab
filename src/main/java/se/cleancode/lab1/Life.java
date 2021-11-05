@@ -10,7 +10,7 @@ public class Life {
             for (int col = 0; col < board.getColumns(); col++) {
                 int random = (int) (Math.random() * 3);
                 if (random == 0) {
-                    board.setValue(row, col, 1);
+                    board.setAlive(row, col);
                     numberOfLivingCells++;
                 }
 
@@ -42,11 +42,11 @@ public class Life {
             for (int col = 0; col < board.getColumns(); col++) {
                 int numberOfLivingNeighbours = countNeighbours(row, col, board);
                 if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours < 2) {
-                    newGenerationBoard.setValue(row, col, 0);
+                    newGenerationBoard.setDead(row, col);
                 } else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours > 3) {
-                    newGenerationBoard.setValue(row, col, 0);
+                    newGenerationBoard.setDead(row, col);
                 } else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours <= 3) {
-                    newGenerationBoard.setValue(row, col, 1);
+                    newGenerationBoard.setDead(row, col);
                 }
             }
         }

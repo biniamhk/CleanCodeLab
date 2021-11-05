@@ -36,6 +36,7 @@ public class Board {
         return board[row][col];
     }
 
+
     public String toString() {
         StringBuilder boardResult = new StringBuilder();
         for (int row = 0; row < getRows(); row++) {
@@ -45,5 +46,13 @@ public class Board {
             boardResult.append("\n");
         }
         return boardResult.toString();
+    }
+
+    public void setAlive(int row, int col) {
+        board[row][col]=1;
+    }
+
+    public void setDead(int row, int col) {
+        board[row][col]=0;
     }
 }
