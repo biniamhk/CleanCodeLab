@@ -3,13 +3,25 @@ package se.cleancode.lab1;
 import java.util.Arrays;
 
 public class Life {
+
+    private MathRandom mathRandom;
+
+
+    public Life(MathRandom mathRandom) {
+        this.mathRandom= mathRandom;
+    }
+
+    public Life() {
+    }
+
     public int initializeBoard(Board board) {
+
         int numberOfLivingCells = 0;
 
         for (int row = 0; row < board.getRows(); row++) {
             for (int col = 0; col < board.getColumns(); col++) {
-                int random = (int) (Math.random() * 3);
-                if (random == 0) {
+                int randomNumber = mathRandom.mathRandom(3);
+                if (randomNumber == 0) {
                     board.setAlive(row, col);
                     numberOfLivingCells++;
                 }
@@ -46,7 +58,10 @@ public class Life {
                 } else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours > 3) {
                     newGenerationBoard.setDead(row, col);
                 } else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours <= 3) {
-                    newGenerationBoard.setDead(row, col);
+                    newGenerationBoard.setAlive(row, col);
+                }
+                else if (board.getValueAtPosition(row, col) == 0 && numberOfLivingNeighbours == 3 ) {
+                    newGenerationBoard.setAlive(row, col);
                 }
             }
         }

@@ -1,31 +1,57 @@
 package se.cleancode.lab1;
 
-import org.assertj.core.api.Assert;
-import org.assertj.core.api.Object2DArrayAssert;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import static com.github.stefanbirkner.systemlambda.SystemLambda.*;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LifeTest {
 
 
-    //Create a two-dimensional grid with input cell
-    //Iinitialize the grid using math-random method
+
 
     Board board;
     Board newGenerationBoard;
     Life life;
+    MathRandomImplementation mathRandomImplementation;
+    DummyMathRandom dummyMathRandom;
 
+
+
+    @Test
+    public void testInitializeBoardWithDummyMathRandomMethod(){
+        dummyMathRandom= new DummyMathRandom();
+        life = new Life(dummyMathRandom);
+        board = new Board(3,4);
+        int expected= board.getRows()* board.getColumns();
+        int result= life.initializeBoard(board);
+        assertEquals(expected,result);
+
+
+    }
+    @BeforeEach
+    public void setUp() {
+        mathRandomImplementation = Mockito.mock(MathRandomImplementation.class);
+        life = new Life(mathRandomImplementation);
+
+    }
+
+    @Test
+    public void testInitializeBoardWithMockito() {
+        board = new Board(4, 4);
+        int numberChoice = 0;
+
+        Mockito.when(mathRandomImplementation.mathRandom(3)).thenReturn(numberChoice);
+        int expected = board.getRows()* board.getColumns();
+        int result=life.initializeBoard(board);
+
+        assertEquals(expected,result);
+
+    }
     @Test
     void checkIfValuesAreAssignedToCells() {
         board = new Board(3, 4);

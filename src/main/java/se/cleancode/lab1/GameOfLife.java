@@ -4,7 +4,8 @@ public class GameOfLife {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Life life= new Life();
+        Life life= new Life(new MathRandomImplementation());
+
 
         final int rows=6;
         final int cols=8;
