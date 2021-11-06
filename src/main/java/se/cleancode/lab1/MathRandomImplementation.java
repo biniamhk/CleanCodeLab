@@ -7,6 +7,5 @@ public class MathRandomImplementation implements MathRandom {
     }
 
 
-
-    }
+}
 

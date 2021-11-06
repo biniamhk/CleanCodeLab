@@ -8,7 +8,7 @@ public class Life {
 
 
     public Life(MathRandom mathRandom) {
-        this.mathRandom= mathRandom;
+        this.mathRandom = mathRandom;
     }
 
     public Life() {
@@ -33,20 +33,27 @@ public class Life {
     }
 
     public int countNeighbours(int row, int col, Board board) {
-
         int count = 0;
         for (int r = row - 1; r <= row + 1; r++) {
             for (int c = col - 1; c <= col + 1; c++) {
-                if (c >= 0 && c < board.getColumns() &&
-                        r >= 0 && r < board.getRows() &&
-                        !(r == row && c == col) &&
-                        board.getValueAtPosition(r, c) == 1) {
-                    count = count + 1;
+                if (checkEdgeCases(board, r, c)) {
+                    if (board.getValueAtPosition(r, c) == 1 && !(r == row && c == col)) {
+
+                        count = count + 1;
+                    }
                 }
             }
         }
 
         return count;
+    }
+
+    public boolean checkEdgeCases(Board board, int r, int c) {
+        if (c >= 0 && c < board.getColumns() && r >= 0 && r < board.getRows()) {
+            return true;
+        }
+
+        return false;
     }
 
     public void calculateNextGeneration(Board board, Board newGenerationBoard) {
@@ -59,8 +66,7 @@ public class Life {
                     newGenerationBoard.setDead(row, col);
                 } else if (board.getValueAtPosition(row, col) == 1 && numberOfLivingNeighbours <= 3) {
                     newGenerationBoard.setAlive(row, col);
-                }
-                else if (board.getValueAtPosition(row, col) == 0 && numberOfLivingNeighbours == 3 ) {
+                } else if (board.getValueAtPosition(row, col) == 0 && numberOfLivingNeighbours == 3) {
                     newGenerationBoard.setAlive(row, col);
                 }
             }
@@ -76,21 +82,21 @@ public class Life {
     }
 
     public String[][] displayBoard(Board board) {
-        String [][] console = new String[board.getRows()][board.getColumns()];
+        String[][] console = new String[board.getRows()][board.getColumns()];
 
         for (int row = 0; row < board.getRows(); row++) {
             for (int col = 0; col < board.getColumns(); col++) {
                 if (board.getValueAtPosition(row, col) == 0) {
-                    System.out.print("."+" ");
-                    console[row][col]="."+" ";
+                    System.out.print("." + " ");
+                    console[row][col] = "." + " ";
                 } else {
-                    System.out.print("*"+" ");
-                   console[row][col]="*"+" ";
+                    System.out.print("*" + " ");
+                    console[row][col] = "*" + " ";
                 }
 
             }
             System.out.println();
         }
-        return  console;
+        return console;
     }
 }

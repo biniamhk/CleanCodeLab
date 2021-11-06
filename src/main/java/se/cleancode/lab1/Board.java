@@ -49,10 +49,10 @@ public class Board {
     }
 
     public void setAlive(int row, int col) {
-        board[row][col]=1;
+        board[row][col] = 1;
     }
 
     public void setDead(int row, int col) {
-        board[row][col]=0;
+        board[row][col] = 0;
     }
 }

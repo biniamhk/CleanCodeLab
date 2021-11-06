@@ -55,7 +55,7 @@ public class LifeTest {
     @Test
     void checkIfValuesAreAssignedToCells() {
         board = new Board(3, 4);
-        life = new Life();
+        life = new Life(mathRandomImplementation);
         int livingCells = life.initializeBoard(board);
 
         assertTrue(livingCells > 0);
@@ -87,7 +87,9 @@ public class LifeTest {
         board.setAlive(1, 0);
         board.setAlive(1, 1);
 
-        assertEquals(3, life.countNeighbours(0, 0, board));
+        assertTrue(life.checkEdgeCases(board,0,3));
+        assertFalse(life.checkEdgeCases(board,-1,-1));
+        assertFalse(life.checkEdgeCases(board,3,4));
 
     }
 
@@ -189,7 +191,7 @@ public class LifeTest {
     void checkIfValuesTransferredBetweenBoards() {
         board = new Board(5, 6);
         newGenerationBoard = new Board(5, 6);
-        life = new Life();
+        life = new Life(mathRandomImplementation);
         life.initializeBoard(board);
         life.calculateNextGeneration(board, newGenerationBoard);
         life.transferNewToCurrent(board, newGenerationBoard);
