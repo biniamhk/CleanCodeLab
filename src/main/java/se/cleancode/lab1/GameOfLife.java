@@ -8,15 +8,10 @@ public class GameOfLife {
 
         System.out.println("welcome to Game of Life");
         Scanner scanner = new Scanner(System.in);
-        int row;
-        int col;
+        int row = 4;
+        int col = 8;
 
         Life life = new Life(new MathRandomImplementation());
-
-        System.out.println("Enter number rows");
-        row = scanner.nextInt();
-        System.out.println("Enter number cols");
-        col = scanner.nextInt();
 
 
         Board board = new Board(row, col);

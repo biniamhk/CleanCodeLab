@@ -1,7 +1,3 @@
-FROM openjdk:16-alpine3.13
-WORKDIR /app
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw
-COPY src ./src
-CMD ["./mvnw", "CleanCodeLia1-1.0-SNAPSHOT.jar"]
+FROM openjdk:16
+ADD target/CleanCodeLia1-1.0-SNAPSHOT.jar CleanCodeLia1-1.0-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar","CleanCodeLia1-1.0-SNAPSHOT.jar"]
