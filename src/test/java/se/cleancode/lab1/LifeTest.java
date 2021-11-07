@@ -26,7 +26,7 @@ public class LifeTest {
     public void testInitializeBoardWithDummyMathRandomMethod(){
         dummyMathRandom= new DummyMathRandom();
         life = new Life(dummyMathRandom);
-        board = new Board(3,4);
+        board = new Board(4,5);
         int expected= board.getRows()* board.getColumns();
         int result= life.initializeBoard(board);
         assertEquals(expected,result);

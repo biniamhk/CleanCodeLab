@@ -7,8 +7,8 @@ public class GameOfLife {
         Life life = new Life(new MathRandomImplementation());
 
 
-        final int rows = 6;
-        final int cols = 8;
+        final int rows = 5;
+        final int cols = 6;
         Board board = new Board(rows, cols);
         Board newBoard = new Board(rows, cols);
 
